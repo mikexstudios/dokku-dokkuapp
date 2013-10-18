@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+APP="$1"; PORT="$2"
+
+if [[ ! -f "$HOME/VHOST" ]]; then
+    echo 'here'
+fi
