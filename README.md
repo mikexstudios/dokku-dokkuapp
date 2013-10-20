@@ -2,7 +2,7 @@ dokku-dokkuapp
 ==============
 
 dokku-dokkuapp is a plugin for [dokku][1] that automatically creates a 
-`[appname].dokkuapp.com` subdomain for newly deployed applications. 
+random `[appname].dokkuapp.com` subdomain for newly deployed applications. 
 This enables apps to quickly obtain a url without needing to register
 a domain name and configure DNS settings.
 
