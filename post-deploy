@@ -5,10 +5,11 @@ APP="$1"; PORT="$2"
 # If no VHOST exists for the app, automatically create one that uses a
 # dokkuapp.com subdomain.
 if [[ ! -f "$HOME/$APP/VHOST" ]]; then
-  #Request a subdomain to client's IP DNS association.
-  response=`curl -s -X POST -d"name=$APP" http://www.dokkuapp.com/api/v1/apps`  
+  #Request a random subdomain to client's IP DNS association.
+  response=`curl -s -X POST http://www.dokkuapp.com/api/v1/apps`  
   #Example response: {"name":"myapp","address":"10.1.1.0"}
-  if grep $response 'address'; then
-    echo "$APP.dokkuapp.com" > "$HOME/$APP/VHOST"  
+  if [[ $response =~ 'address' ]]; then
+    subdomain=`echo $response | sed 's/{"name":"\(.*\)",.*}/\1/g'`
+    echo "$subdomain.dokkuapp.com" > "$HOME/$APP/VHOST"
   fi
 fi
